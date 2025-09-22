@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin4
+    ports:
+      - "443:443"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: SuperSecret
+      PGADMIN_ENABLE_TLS: "True"
+    volumes:
+      - ./SSL_Certificates/ssl.cert:/certs/server.cert
+      - ./SSL_Certificates/ssl.key:/certs/server.key

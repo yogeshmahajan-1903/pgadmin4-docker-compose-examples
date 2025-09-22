@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  pgadmin:
+    image: dpage/pgadmin4:8.2
+    container_name: pgadmin4
+    ports:
+      - "80:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: SuperSecret
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+      - ./config/LatestServers.json:/pgadmin4/servers.json
+      - ./shared_dir/SSD1 :/mnt/storage1
+      - ./shared_dir/SSD2 :/mnt/storage2
+      - ./config/pgadmin_config_local.py:/pgadmin4/config_local.py:rw
+      
+volumes:
+  pgadmin-data:
+    name: 'pgadmin-data'
